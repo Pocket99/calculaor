@@ -142,6 +142,7 @@ void Widget::on_equalButton_clicked()
     char opt[128] = {0};
     int i = 0, temp = 0, num1 , num2;
 
+    //convert expression intto char array
     //convert QString to char
     QByteArray ba;
     ba.append(expression);//convert QString to QByteArray
@@ -149,7 +150,7 @@ void Widget::on_equalButton_clicked()
 
     while (opt[i] != '\0' || s_opt.empty() != true) {
         if(opt[i] >= '0' && opt[i] <= '9'){
-            temp = temp *10 +opt[i] - '0';
+            temp = temp *10 +opt[i] - '0';//char to int
             i++;
             if(opt[i]<'0'||opt[i]>'9'){
                 s_num.push(temp);
@@ -185,7 +186,7 @@ void Widget::on_equalButton_clicked()
                         s_num.pop();
                         num2 = s_num.top();
                         s_num.pop();
-                        s_num.push(num1 - num2);
+                        s_num.push(num2 - num1);
                         break;
                     case '*':
                         num1 = s_num.top();
@@ -199,7 +200,7 @@ void Widget::on_equalButton_clicked()
                         s_num.pop();
                         num2 = s_num.top();
                         s_num.pop();
-                        s_num.push(num1 / num2);
+                        s_num.push(num2 / num1);
                         break;
                 }
             }
